@@ -1,0 +1,21 @@
+ <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" class="form-signin" style="margin: 4em;">
+    <div class="text-center mb-4">      
+      <h1 class="h3 mb-3 font-weight-normal">Login</h1>      
+    </div>
+    <div class="form-label-group">
+      <input type="text" id="inputID" class="form-control" name="id" placeholder="ID Number" formControlName="id" required>
+      <label for="inputID">ID</label>
+    </div>
+
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required>
+      <label for="inputPassword">Password</label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>    
+    <div class="form-label-group">
+      <a class="nav-link" href="registry/">Register</a>    
+    </div>    
+    <span class="badge badge-pill badge-danger">{{ loginMessage }}</span>
+    <span *ngIf="form.id.invalid" class="badge badge-pill badge-danger">Only Numbers Are Allowed</span>    
+    <span *ngIf="form.id.errors?.required" class="badge badge-pill badge-danger">ID Required</span>    
+</form>  

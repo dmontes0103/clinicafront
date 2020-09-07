@@ -1,0 +1,28 @@
+<div class="container" style="padding-top:40px;">
+    <div class="row">
+        <div class="col-md-14 mx-auto">
+            <div class="card mx-4">
+                <div class="card-body">
+                    <form [formGroup]="appointmntForm" (ngSubmit)="onFormSubmit()" >
+                        <h1 style="text-align:center">New Appointment</h1>
+                        <div class="input-group mb-3">
+                            <input type="datetime-local" class="form-control" placeholder="Date" formControlName="Date">                             
+                        </div>                        
+                        <label>Area of Attendance:</label>
+                        <div class="input-group mb-4">                                          
+                        <select class="form-control" formControlName="A_Area">                            
+                            <option value=1>Medicina General</option>
+                            <option value=2>Odontologia</option>                            
+                            <option value=3>Pediatria</option>
+                            <option value=4>Neurologia</option>
+                        </select>                     
+                        </div>  
+                        <button type="submit" class="btn btn-block btn-success">Request Appointment</button>
+                        <button type="button" class="btn btn-block btn-warning" (click)="returnToDashBoard()">Cancel & Return</button>
+                    </form>
+                    <span class="badge badge-pill badge-danger">{{ operationsMessage }}</span>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

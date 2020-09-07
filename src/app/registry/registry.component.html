@@ -1,0 +1,37 @@
+<div class="container" style="padding-top:40px;">
+    <div class="row">
+        <div class="col-md-14 mx-auto">
+            <div class="card mx-4">
+                <div class="card-body">
+                    <form [formGroup]="patientForm" (ngSubmit)="onFormSubmit()">
+                        <h1 style="text-align:center">Register</h1>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="ID" formControlName="id">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="LastName" formControlName="lastname">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="password"formControlName="password" >
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Phone" formControlName="phone">
+                        </div>
+                        <label>Sex</label>
+                        <div class="input-group mb-4">                        
+                        <select formControlName="sex" class="form-control">
+                            <option value="F">F</option>
+                            <option value="M">M</option>                            
+                        </select>                     
+                        </div>  
+                        <button type="submit" class="btn btn-block btn-success">Create Account</button>
+                        <span *ngIf="registryForm.password.errors.required" class="badge badge-pill badge-danger">Password is required</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

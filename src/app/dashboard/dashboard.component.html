@@ -1,0 +1,53 @@
+<body style="margin-top: 5em;">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Clinica GAP</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" *ngIf="!isAuthenthicated">
+          <a class="nav-link" href="login/">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dashboard/{{ patient.id }}"> My Appointments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile/{{ patient.id }}"> My Profile </a>
+        </li>
+        <li class="nav-item"  *ngIf="isAuthenthicated && isAdmin">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Areas Available
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+              <a class="dropdown-item" *ngFor="let c of _areasAvail">{{ c.name }}</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>  
+    <div class="container-fluid">
+      <h3>Patient:{{ patient.name }} {{ patient.lastname }}</h3>       
+      <p>Logged as: {{ isAdmin == true ? "Admin" : "User" }}</p>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Area</th>                
+                <th scope="col">Cancel</th>
+              </tr>
+            </thead>            
+              <tbody *ngFor="let c of pAppointments">
+                <tr>
+                  <td>{{ c.id }}</td>
+                  <td>{{ c.a_date | date: 'MMM/dd/yyyy h:mm:ss a' }}</td>
+                  <td>{{ c.appointment_area.name}}</td>
+                  <td><button type="button" class="btn btn-danger" (click)="onCancelApp(c)">Cancel</button></td>
+                </tr>                            
+            </tbody>
+          </table>
+          <h3> {{ transMessage }} </h3>
+    </div>            
+      <button type="button" class="btn btn-success" (click)="createNew()">Create New</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="isAuthenthicated" type="submit" (click)="logOut()">Log Out</button>
+</body>
